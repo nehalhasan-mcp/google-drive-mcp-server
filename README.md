@@ -1,186 +1,115 @@
-\# Google Drive MCP Server
+# Google Drive MCP Server
 
+A Model Context Protocol (MCP) server that connects AI assistants like Claude Desktop to Google Drive and Google Sheets.
 
+Search files, read documents, explore Excel spreadsheets, and manage Google Sheets using natural language.
 
-A Model Context Protocol (MCP) server that connects Google Drive with AI assistants such as Claude Desktop.
+## Features
 
+- Search files in Google Drive.
+- List recent Drive files.
+- Read Google Docs, PDFs, TXT, JSON, DOCX and XLSX files.
+- Search files by type and content.
+- Search Excel and Google Sheets data.
+- Find specific rows inside spreadsheets.
+- Add new rows to Google Sheets.
+- Update existing spreadsheet rows.
+- Delete spreadsheet rows.
 
-
-\## Features
-
-
-
-\- \*\*Search Drive Files\*\* — Search files by name.
-
-\- \*\*List Drive Files\*\* — List files with pagination and modification dates.
-
-\- \*\*Read Drive Files\*\* — Read supported Google Docs, PDF, text and JSON files.
-
-\- \*\*Google OAuth 2.0\*\* — Authenticate securely with Google Drive.
-
-\- \*\*PDF Text Extraction\*\* — Extract readable text from PDF documents.
-
-
-
-\## Tech Stack
-
-
-
-\- Node.js
-
-\- Model Context Protocol (MCP) SDK
-
-\- Google Drive API
-
-\- Google OAuth 2.0
-
-\- JavaScript (ES Modules)
-
-\- Zod
-
-\- PDF.js
-
-
-
-\## Available MCP Tools
-
-
+## Available MCP Tools
 
 | Tool | Description |
-
 |---|---|
+| `list_drive_files` | List recent Drive files |
+| `search_drive_files` | Search Drive files |
+| `read_drive_file` | Read supported files |
+| `search_drive_by_type` | Search files by type |
+| `search_drive_content` | Search file contents |
+| `search_excel_content` | Search spreadsheet data |
+| `search_specific_file` | Search a specific spreadsheet |
+| `add_google_sheet_row` | Add a spreadsheet row |
+| `update_google_sheet_row` | Update a spreadsheet row |
+| `delete_google_sheet_row` | Delete a spreadsheet row |
 
-| `search\_drive\_files` | Search Google Drive files by name |
+## Technology Stack
 
-| `list\_drive\_files` | List recently modified Drive files |
+- Node.js
+- Model Context Protocol SDK
+- Google Drive API
+- Google Sheets API
+- Google OAuth 2.0
+- SheetJS
+- Mammoth
+- PDF.js
 
-| `read\_drive\_file` | Read supported Drive documents |
+## Example Use Cases
 
+Ask Claude Desktop:
 
+- Find a file named MCP Excel Test.
+- Search an Excel file for a student named Ali.
+- Read spreadsheet data.
+- Calculate average marks.
+- Add a new row to Google Sheets.
+- Update or delete a spreadsheet row.
 
-\## Project Structure
+## Tested Example
 
+The server was tested with Claude Desktop using an Excel spreadsheet.
 
+| Name | Course | Marks |
+|---|---|---:|
+| Ali | AI | 85 |
+| Ahmed | Python | 90 |
+| Sara | Web Development | 95 |
 
-```text
+The server successfully searched the Excel file and returned matching rows.
 
-google-drive-mcp/
+## Installation
 
-├── index.js
-
-├── package.json
-
-├── package-lock.json
-
-├── .gitignore
-
-├── credentials.json  (private)
-
-└── token.json        (private)
-
-```
-
-
-
-\## Installation
-
-
-
-1\. Install Node.js.
-
-2\. Clone this repository.
-
-3\. Install dependencies:
-
-
+Clone the repository:
 
 ```bash
+git clone https://github.com/nehalhasan-mcp/google-drive-mcp-server.git
+```
 
+Install dependencies:
+
+```bash
 npm install
-
 ```
 
+Configure Google OAuth credentials and authorize access to Google Drive and Google Sheets.
 
+## Claude Desktop Configuration
 
-4\. Configure Google Cloud OAuth credentials.
-
-5\. Place your local `credentials.json` and `token.json` files in the project folder.
-
-6\. Start the server:
-
-
-
-```bash
-
-npm start
-
-```
-
-
-
-\## Claude Desktop Configuration
-
-
-
-Add the server to your Claude Desktop MCP configuration:
-
-
+Add the server to Claude Desktop's MCP configuration:
 
 ```json
-
 {
-
-&#x20; "mcpServers": {
-
-&#x20;   "google-drive-mcp": {
-
-&#x20;     "command": "C:\\\\Program Files\\\\nodejs\\\\node.exe",
-
-&#x20;     "args": \[
-
-&#x20;       "C:\\\\Users\\\\YOUR\_USERNAME\\\\Desktop\\\\google-drive-mcp\\\\index.js"
-
-&#x20;     ]
-
-&#x20;   }
-
-&#x20; }
-
+  "mcpServers": {
+    "google-drive-mcp": {
+      "command": "C:\\Program Files\\nodejs\\node.exe",
+      "args": [
+        "C:\\Users\\Admin\\Desktop\\google-drive-mcp\\index.js"
+      ]
+    }
+  }
 }
-
 ```
 
+Update the paths according to your computer.
 
+## Security
 
-Replace `YOUR\_USERNAME` and the project path with your own local details.
+- Never upload `credentials.json` or `token.json` to GitHub.
+- Keep OAuth credentials private.
+- Keep `.env` and other secret files out of the repository.
 
+## Author
 
+**Nehal Hasan**
 
-\## Security
+GitHub: https://github.com/nehalhasan-mcp
 
-
-
-\- Never upload `credentials.json` or `token.json`.
-
-\- Keep OAuth secrets private.
-
-\- Use `.gitignore` to exclude sensitive files.
-
-\- Do not share personal Drive documents publicly.
-
-
-
-\## Project Status
-
-
-
-Working prototype tested with Claude Desktop and Google Drive.
-
-
-
-\## Author
-
-
-
-Developed as an MCP integration portfolio project.
-
+Repository: https://github.com/nehalhasan-mcp/google-drive-mcp-server
