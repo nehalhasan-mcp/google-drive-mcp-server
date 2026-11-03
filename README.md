@@ -116,4 +116,4 @@ Repository: https://github.com/nehalhasan-mcp/google-drive-mcp-server
 
 ## Project Demo
 
-![Google Drive MCP Server Demo](Screenshot%202026-11-03%20174446.png)
+![Google Drive MCP Server Demo](./Screenshot%202026-11-03%20174446.png)
