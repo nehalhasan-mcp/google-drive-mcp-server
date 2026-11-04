@@ -1,8 +1,9 @@
+
 # Google Drive MCP Server
 
-A Model Context Protocol (MCP) server that connects AI assistants like Claude Desktop to Google Drive and Google Sheets.
+A powerful Model Context Protocol (MCP) server that connects AI assistants such as Claude Desktop with Google Drive and Google Sheets.
 
-Search files, read documents, explore Excel spreadsheets, and manage Google Sheets using natural language.
+Search files, read documents, explore spreadsheet data, and manage Google Sheets through natural language.
 
 ## Features
 
@@ -15,14 +16,19 @@ Search files, read documents, explore Excel spreadsheets, and manage Google Shee
 - Add new rows to Google Sheets.
 - Update existing spreadsheet rows.
 - Delete spreadsheet rows.
+- Pagination support for file searches and listings.
+- Input validation and error handling.
+- Professional INFO, WARNING and ERROR logging.
+- Centralized error response handling.
+- Error logs saved to `mcp-errors.log`.
 
 ## Available MCP Tools
 
 | Tool | Description |
 |---|---|
+| `search_drive_files` | Search Google Drive files |
 | `list_drive_files` | List recent Drive files |
-| `search_drive_files` | Search Drive files |
-| `read_drive_file` | Read supported files |
+| `read_drive_file` | Read supported documents |
 | `search_drive_by_type` | Search files by type |
 | `search_drive_content` | Search file contents |
 | `search_excel_content` | Search spreadsheet data |
@@ -42,6 +48,17 @@ Search files, read documents, explore Excel spreadsheets, and manage Google Shee
 - Mammoth
 - PDF.js
 
+## Logging and Error Handling
+
+The server includes a centralized error-handling system.
+
+- INFO logs record important operations.
+- WARNING logs record situations such as missing files or empty search results.
+- ERROR logs record failed operations.
+- Errors are written to `mcp-errors.log`.
+- Input validation helps prevent invalid requests.
+- Tool errors return structured error responses.
+
 ## Example Use Cases
 
 Ask Claude Desktop:
@@ -49,13 +66,14 @@ Ask Claude Desktop:
 - Find a file named MCP Excel Test.
 - Search an Excel file for a student named Ali.
 - Read spreadsheet data.
-- Calculate average marks.
+- Find specific information inside a document.
 - Add a new row to Google Sheets.
-- Update or delete a spreadsheet row.
+- Update an existing spreadsheet row.
+- Delete a spreadsheet row.
 
 ## Tested Example
 
-The server was tested with Claude Desktop using an Excel spreadsheet.
+The server was tested with Claude Desktop using spreadsheet data.
 
 | Name | Course | Marks |
 |---|---|---:|
@@ -63,7 +81,9 @@ The server was tested with Claude Desktop using an Excel spreadsheet.
 | Ahmed | Python | 90 |
 | Sara | Web Development | 95 |
 
-The server successfully searched the Excel file and returned matching rows.
+The server successfully searched spreadsheet files and returned matching rows.
+
+Google Sheets row operations were also tested by adding, updating and deleting a test row.
 
 ## Installation
 
@@ -71,6 +91,12 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/nehalhasan-mcp/google-drive-mcp-server.git
+```
+
+Move into the project folder:
+
+```bash
+cd google-drive-mcp-server
 ```
 
 Install dependencies:
@@ -81,9 +107,11 @@ npm install
 
 Configure Google OAuth credentials and authorize access to Google Drive and Google Sheets.
 
+Keep your credentials private.
+
 ## Claude Desktop Configuration
 
-Add the server to Claude Desktop's MCP configuration:
+Add the server to your Claude Desktop MCP configuration:
 
 ```json
 {
@@ -91,20 +119,23 @@ Add the server to Claude Desktop's MCP configuration:
     "google-drive-mcp": {
       "command": "C:\\Program Files\\nodejs\\node.exe",
       "args": [
-        "C:\\Users\\Admin\\Desktop\\google-drive-mcp\\index.js"
+        "C:\\Path\\To\\google-drive-mcp\\index.js"
       ]
     }
   }
 }
 ```
 
-Update the paths according to your computer.
+Replace the example path with the actual location of your project.
+
+Restart Claude Desktop after saving the configuration.
 
 ## Security
 
 - Never upload `credentials.json` or `token.json` to GitHub.
 - Keep OAuth credentials private.
-- Keep `.env` and other secret files out of the repository.
+- Never publish access tokens or API secrets.
+- Keep private configuration files out of the repository.
 
 ## Author
 
