@@ -15,7 +15,9 @@
     "@modelcontextprotocol/sdk": "^1.32.2",
     "dotenv": "^18.0.9",
     "googleapis": "^189.0.0",
+    "mammoth": "^1.13.0",
     "pdfjs-dist": "^6.5.438",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz",
     "zod": "^4.6.7"
   }
 }
